@@ -34,7 +34,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "Pokemon Cards", bundle: Bundle.main) {
             configuration.trackingImages = imageToTrack
             
-            configuration.maximumNumberOfTrackedImages = 1
+            configuration.maximumNumberOfTrackedImages = 2
             
             print("iamges Successfully Added")
         }
@@ -68,8 +68,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             node.addChildNode(planeNode)
             
-            if let pokeScene = SCNScene(named: "art.scnassets/Eevee/eevee.scn"){
+            if let pokeScene = SCNScene(named: "art.scnassets/eevee.scn"){
                 if let pokeNode = pokeScene.rootNode.childNodes.first {
+                    pokeNode.eulerAngles.x = .pi / 2
+                    
+                    planeNode.addChildNode(pokeNode)
+                }
+                
+            }
+            if let pokeScene = SCNScene(named: "art.scnassets/oddish.scn"){
+                if let pokeNode = pokeScene.rootNode.childNodes.first {
+                    pokeNode.eulerAngles.x = .pi / 2
                     
                     planeNode.addChildNode(pokeNode)
                 }
